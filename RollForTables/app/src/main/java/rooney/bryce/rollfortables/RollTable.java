@@ -126,10 +126,6 @@ public class RollTable {
      * Methods
      */
 
-    //Danny's Test Comment
-
-    //Bryce Test
-
 
     public void addResultToList(String result){
         this.resultsList.add(result);
