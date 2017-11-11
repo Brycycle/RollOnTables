@@ -1,4 +1,4 @@
-package rooney.bryce.rollfortables.Classes;
+package rooney.bryce.rollfortables.Common;
 
 /**
  * Created by Brycycle on 11/10/2017.
