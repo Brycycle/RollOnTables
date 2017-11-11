@@ -1,4 +1,4 @@
-package rooney.bryce.rollfortables;
+package rooney.bryce.rollfortables.Classes;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -166,9 +166,9 @@ public class RollTable {
         resultRoll = roll.nextInt((maxRange - minRange + 1) + minRange);
 
         //find the range element number that roll falls in
+
         for(int i =0; i<this.resultsList.size(); i++){
-            //TODO get low and high range for each result in rangesForResult. Replace with 1 and 8
-            if( (1 <= resultRoll) && (resultRoll <= 8)){
+            if( (this.rangesForResults.get(i).get(0) <= resultRoll) && (resultRoll <= this.rangesForResults.get(i).get(1))){
                 resultText = this.resultsList.get(i);
             }
         }
