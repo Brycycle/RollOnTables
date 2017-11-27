@@ -30,6 +30,12 @@ public class RollTable {
     public List<String> tags = new ArrayList<String>();
 
     /**
+        Blank Constructor
+     */
+    public RollTable(){
+
+    }
+    /**
      * Constructor
      * @param id
      * @param title
@@ -37,6 +43,7 @@ public class RollTable {
      * @param die
      * @param numResults
      */
+
 
     public RollTable(int id, String title, String description, int[] die, int numResults){
         this.id = id;
@@ -110,9 +117,9 @@ public class RollTable {
         this.numResults = numResults;
     }
 
-//    public void setResultsList(List<String> resultsList) {
-//        this.resultsList = resultsList;
-//    }
+    public void setResultsList(List<String> resultsList) {
+        this.resultsList = resultsList;
+    }
 
     public void setRangesForResults(List<List<Integer>> rangesForResults) {
         this.rangesForResults = rangesForResults;
@@ -120,6 +127,10 @@ public class RollTable {
 
     public void setSource(int source) {
         this.source = source;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
     /**

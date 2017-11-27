@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Created by Brycycle on 11/26/2017.
+ * Created by Bryce Rooney on 11/26/2017.
  */
 
 public class SQLiteHelper extends SQLiteOpenHelper {
@@ -18,7 +18,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_DESCRIPTION = "description";
-    public static final String COLUMN_DIE = "die";
+    public static final String COLUMN_DIE_0 = "die0";
+    public static final String COLUMN_DIE_1 = "die1";
     public static final String COLUMN_NUM_RESULTS = "numResults";
     public static final String COLUMN_RESULTS_LIST = "resultsList";
     public static final String COLUMN_RANGES_FOR_RESULTS = "rangesForResults";
@@ -43,11 +44,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+        //TODO figure out how to store array lists into sql as strings. convert to JSON objects?
         String SQL_CREATE_TABLE = "CREATE TABLE events (" +
                 COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_TITLE +" TEXT NOT NULL," +
                 COLUMN_DESCRIPTION +"TEXT" +
-                COLUMN_DIE +"" +
+                COLUMN_DIE_0 +"" +
+                COLUMN_DIE_1 +"INTEGER NOT NULL" +
                 COLUMN_NUM_RESULTS +"INTEGER NOT NULL"+
                 COLUMN_RESULTS_LIST + "TEXT"+
                 COLUMN_RANGES_FOR_RESULTS + ""+

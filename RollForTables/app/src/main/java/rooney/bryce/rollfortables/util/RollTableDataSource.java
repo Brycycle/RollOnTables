@@ -12,12 +12,12 @@ import java.util.List;
 import rooney.bryce.rollfortables.Classes.RollTable;
 
 /**
- * Created by Brycycle on 11/26/2017.
+ * Created by Bryce Rooney on 11/26/2017.
  */
 
 public class RollTableDataSource {
     /**
-     * Singleton instance of AgendaDataSource
+     * Singleton instance of RollTableDataSource
      */
     private static RollTableDataSource dsInstance = null;
 
@@ -25,25 +25,26 @@ public class RollTableDataSource {
     private SQLiteHelper dbHelper;
 
     /**
-     * Array of all column titles in Events table
+     * Array of all column titles in RollTable table
      */
     private String[] allColumns = { SQLiteHelper.COLUMN_ID,
             SQLiteHelper.COLUMN_TITLE,
             SQLiteHelper.COLUMN_DESCRIPTION,
-            SQLiteHelper.COLUMN_DIE,
+            SQLiteHelper.COLUMN_DIE_0,
+            SQLiteHelper.COLUMN_DIE_1,
             SQLiteHelper.COLUMN_NUM_RESULTS,
-            SQLiteHelper.COLUMN_RESULTS_LIST
+            SQLiteHelper.COLUMN_RESULTS_LIST,
             SQLiteHelper.COLUMN_RANGES_FOR_RESULTS,
             SQLiteHelper.COLUMN_SOURCE,
             SQLiteHelper.COLUMN_TAGS};
 
     /**
-     * Returns an instance of AgendaDataSource if it exists, otherwise creates
-     * a new AgendaDataSource object and returns it
+     * Returns an instance of RollTableDataSource if it exists, otherwise creates
+     * a new RollTableDataSource object and returns it
      * @param context
      * The Activity that called this method
      * @return
-     * An instance of AgendaDataSource
+     * An instance of RollTableDataSource
      */
     public static RollTableDataSource getInstance(Context context) {
         if (dsInstance == null) {
@@ -62,7 +63,7 @@ public class RollTableDataSource {
     }
 
     /**
-     * Opens the Agenda database for writing
+     * Opens the rollTable database for writing
      * @throws SQLException
      */
     public void open() throws SQLException {
@@ -70,37 +71,37 @@ public class RollTableDataSource {
     }
 
     /**
-     * Closes the Agenda database
+     * Closes the rollTable database
      */
     public void close() {
         dbHelper.close();
     }
 
     /**
-     * Creates new row in database and stores all of the event's details. Then creates
-     * an Event object from the details stored in the database and returns it.
-     * @param title
-     * @param location
-     * @param start
-     * @param end
-     * @param details
-     * @return
-     * Event object that was created
+     * Creates new row in database and stores all of the rollTables's details. Then creates
+     * a RollTable object from the details stored in the database and returns it.
      */
-    public RollTable createRollTable(String title, ) {
+    public RollTable createRollTable(String title, String description,int[] die, int numResults) {
 
         // TODO
 
         // Put keys (row columns) and values (parameters) into ContentValues object
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.COLUMN_TITLE, title);
-        values.put(SQLiteHelper.COLUMN_DESCRIPTION, location);
-        values.put(SQLiteHelper.COLUMN_DIE, start);
-        values.put(SQLiteHelper.COLUMN_NUM_RESULTS, end);
-        values.put(SQLiteHelper.COLUMN_RESULTS_LIST, details);
-        values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, start);
-        values.put(SQLiteHelper.COLUMN_SOURCE, end);
-        values.put(SQLiteHelper.COLUMN_TAGS, details)
+        if(description != null){
+            values.put(SQLiteHelper.COLUMN_DESCRIPTION, description);
+        }
+        else{
+            values.put(SQLiteHelper.COLUMN_DESCRIPTION, "");
+        }
+        values.put(SQLiteHelper.COLUMN_DIE_0, die[0]);
+        values.put(SQLiteHelper.COLUMN_DIE_1, die[1]);
+        values.put(SQLiteHelper.COLUMN_NUM_RESULTS, numResults);
+        //TODO make sure these are put in properly with how they are stored in DB
+        values.put(SQLiteHelper.COLUMN_RESULTS_LIST, "");
+        values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, "");
+        values.put(SQLiteHelper.COLUMN_SOURCE, 3);
+        values.put(SQLiteHelper.COLUMN_TAGS, "");
 
         // Insert ContentValues into row in events table and obtain row ID
         // HINT: database.insert(...) returns the id of the row you insert
@@ -110,7 +111,15 @@ public class RollTableDataSource {
         // NOTE: You need to write a query to get an event by id at the to-do marker
         //		 in the getEvent(...) method
         RollTable newRollTable = getRollTable(id);
+        return newRollTable;
+    }
 
+    public RollTable updateRollTable(RollTable rollTable){
+        int id = rollTable.getId();
+        //TODO find table in DB with id, enter all values of rollTable into DB, return
+
+
+        RollTable newRollTable = getRollTable(id);
         return newRollTable;
     }
 
@@ -142,9 +151,9 @@ public class RollTableDataSource {
      * List of all Event objects in database
      */
     public List<RollTable> getAllRollTables() {
-        List<RollTable> rollTables = new ArrayList<RollTable>();
+        List<RollTable> rollTables = new ArrayList<>();
 
-        // Query of all events
+        // TODO Query of all events with tags filters
         Cursor cursor = database.query(SQLiteHelper.TABLE_ROLL_TABLES, allColumns, null,
                 null, null, null, null);
 
@@ -167,15 +176,20 @@ public class RollTableDataSource {
     private RollTable cursorToRollTable(Cursor cursor) {
         RollTable rollTable = new RollTable();
 
-
         rollTable.setTitle(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TITLE)));
         rollTable.setDescription(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_DESCRIPTION)));
-        rollTable.setDie(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE)));
-        rollTable.setNumResults(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_NUM_RESULTS)));
-        rollTable.setRangesForResults(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
-        rollTable.setSource(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_SOURCE)));
-        rollTable.setRangesForResults(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
-//        rollTable.setTa(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
+
+        int[] die = new int[2];
+        die[0] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_0));
+        die[1] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_1));
+        rollTable.setDie(die);
+        rollTable.setNumResults(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_NUM_RESULTS)));
+        rollTable.setSource(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_SOURCE)));
+
+        //TODO make sure types match
+//        rollTable.setRangesForResults(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
+//        rollTable.setRangesForResults(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
+//        rollTable.setTags(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
 
 
         return rollTable;
