@@ -13,13 +13,11 @@ public class Constants {
     public static String SOURCE_PHB_STRING = "Player's Handbook";
     public static int SOURCE_DMG_INT = 1;
     public static String SOURCE_DMG_STING = "Dungeon Master's Guide";
-    public static int SOURCE_CUSTOM_INT = 2;
+    public static int SOURCE_XGTE_INT = 2;
+    public static String SOURCE_XGTE_STRING = "Xanathar's Guide to Everything";
+    public static int SOURCE_CUSTOM_INT = 3;
     public static String SOURCE_CUSTOM_STRING = "Custom Source";
 
-    //Tags
-    public static String TAG_Treasure = "Treasure";
-    public static String TAG_EVENTS = "Events";
-    public static String TAG_EFFECTS = "Effects";
-    public static String TAG_FAVORITES = "Favorites";
-    public static String TAG_CONTENT_CREATION = "Content Creation";
+
+
 }
