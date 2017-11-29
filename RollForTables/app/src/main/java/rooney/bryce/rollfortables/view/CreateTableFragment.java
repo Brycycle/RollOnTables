@@ -62,8 +62,8 @@ public class CreateTableFragment extends Fragment {
                     int highRange = Integer.parseInt(sDieType.getSelectedItem().toString());
 
                     //check for null entries
-                    if(TextUtils.isEmpty(etTitle.getText()) || TextUtils.isEmpty(etNumResults.getText())
-                            ){
+                    if(TextUtils.isEmpty(etTitle.getText()) || TextUtils.isEmpty(etNumResults.getText()) ||
+                            ((sNumDie == null) && (sNumDie.getSelectedItem() == null)) || ((sDieType == null) && sDieType.getSelectedItem() == null)){
                         Toast.makeText(getActivity(), Constants.NULL_ENTRIES , Toast.LENGTH_LONG).show();
                     }
                     //check if numResults is proper with one die roll
@@ -89,11 +89,11 @@ public class CreateTableFragment extends Fragment {
     }
 
     public void sendData() {
-        String descrpitionText = null;
+        String descriptionText = null;
 
         //Get description text if not null
         if(!TextUtils.isEmpty(etDiscription.getText())){
-            descrpitionText = etDiscription.getText().toString();
+            descriptionText = etDiscription.getText().toString();
         }
 
         //get die values
@@ -104,7 +104,7 @@ public class CreateTableFragment extends Fragment {
         //submit info to activity
         activityCommanderSingleTable.createTableFromView(
                 etTitle.getText().toString(),
-                descrpitionText,
+                descriptionText,
                 Integer.parseInt(etNumResults.getText().toString()),
                 die
         );
