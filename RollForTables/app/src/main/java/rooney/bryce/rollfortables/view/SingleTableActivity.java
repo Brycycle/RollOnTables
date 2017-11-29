@@ -1,6 +1,7 @@
 package rooney.bryce.rollfortables.view;
 
 import android.app.Activity;
+import android.support.annotation.Nullable;
 
 /**
  * Created by Brycycle on 11/10/2017.
@@ -8,5 +9,11 @@ import android.app.Activity;
  * Activity for displaying details of a selected table
  */
 
-public class SingleTableActivity extends Activity {
+public class SingleTableActivity extends Activity implements CreateTableFragment.createTableListener {
+
+
+    @Override
+    public void createTableFromView(String title, @Nullable String description, int numResults, int[] die) {
+
+    }
 }

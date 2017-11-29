@@ -18,6 +18,10 @@ public class Constants {
     public static int SOURCE_CUSTOM_INT = 3;
     public static String SOURCE_CUSTOM_STRING = "Custom Source";
 
+    //Error messages
+    public static String NUM_RESULTS_TOO_LARGE = "Number of results desired cannot exceed number of possible rolls!";
+    public static String NULL_ENTRIES = "All entries must be filled. Please make corrections! ";
+
 
 
 }
