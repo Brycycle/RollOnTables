@@ -23,7 +23,7 @@ public class RollTable {
 
     public List<String> resultsList = new ArrayList<String>();
 
-    public List<List<Integer>> rangesForResults = new ArrayList<List<Integer>>();
+    public List<Integer> rangesForResults = new ArrayList<Integer>();
 
     public int source;
 
@@ -80,7 +80,7 @@ public class RollTable {
         return resultsList;
     }
 
-    public List<List<Integer>> getRangesForResults() {
+    public List<Integer> getRangesForResults() {
         return rangesForResults;
     }
 
@@ -121,7 +121,7 @@ public class RollTable {
         this.resultsList = resultsList;
     }
 
-    public void setRangesForResults(List<List<Integer>> rangesForResults) {
+    public void setRangesForResults(List<Integer> rangesForResults) {
         this.rangesForResults = rangesForResults;
     }
 
@@ -179,7 +179,7 @@ public class RollTable {
         //find the range element number that roll falls in
 
         for(int i =0; i<this.resultsList.size(); i++){
-            if( (this.rangesForResults.get(i).get(0) <= resultRoll) && (resultRoll <= this.rangesForResults.get(i).get(1))){
+            if( (this.rangesForResults.get(i) <= resultRoll) && (resultRoll <= this.rangesForResults.get(i))){
                 resultText = this.resultsList.get(i);
             }
         }

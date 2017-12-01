@@ -1,7 +1,7 @@
 package rooney.bryce.rollfortables.Common;
 
 /**
- * Created by Brycycle on 11/10/2017.
+ * Created by Bryce Rooney on 11/10/2017.
  */
 
 public class Constants {
