@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,8 @@ public class RollTableDataSource {
      * Creates new row in database and stores all of the rollTables's details. Then creates
      * a RollTable object from the details stored in the database and returns it.
      */
-    public RollTable createRollTable(String title, String description,int[] die, int numResults) {
+    public RollTable createRollTable(@Nullable String title, @Nullable String description, @Nullable int[] die,
+                                     @Nullable int numResults) {
 
         // TODO
 
@@ -94,9 +96,25 @@ public class RollTableDataSource {
         else{
             values.put(SQLiteHelper.COLUMN_DESCRIPTION, "");
         }
-        values.put(SQLiteHelper.COLUMN_DIE_0, die[0]);
-        values.put(SQLiteHelper.COLUMN_DIE_1, die[1]);
-        values.put(SQLiteHelper.COLUMN_NUM_RESULTS, numResults);
+        if(description != null){
+            values.put(SQLiteHelper.COLUMN_DIE_0, die[0]);
+        }
+        else{
+            values.put(SQLiteHelper.COLUMN_DIE_0, "");
+        }
+        if(description != null){
+            values.put(SQLiteHelper.COLUMN_DIE_1, die[1]);
+        }
+        else{
+            values.put(SQLiteHelper.COLUMN_DIE_1, "");
+        }
+        if(description != null){
+            values.put(SQLiteHelper.COLUMN_NUM_RESULTS, numResults);
+        }
+        else{
+            values.put(SQLiteHelper.COLUMN_NUM_RESULTS, "");
+        }
+
         //TODO make sure these are put in properly with how they are stored in DB
         values.put(SQLiteHelper.COLUMN_RESULTS_LIST, "");
         values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, "");
@@ -104,12 +122,8 @@ public class RollTableDataSource {
         values.put(SQLiteHelper.COLUMN_TAGS, "");
 
         // Insert ContentValues into row in events table and obtain row ID
-        // HINT: database.insert(...) returns the id of the row you insert
         long id = database.insert(SQLiteHelper.TABLE_ROLL_TABLES, null, values);
 
-        // Query database for event row just added using the getEvent(...) method
-        // NOTE: You need to write a query to get an event by id at the to-do marker
-        //		 in the getEvent(...) method
         RollTable newRollTable = getRollTable(id);
         return newRollTable;
     }
@@ -119,8 +133,8 @@ public class RollTableDataSource {
         //TODO find table in DB with id, enter all values of rollTable into DB, return
 
 
-        RollTable newRollTable = getRollTable(id);
-        return newRollTable;
+        RollTable updatedRollTable = getRollTable(id);
+        return updatedRollTable;
     }
 
     /**

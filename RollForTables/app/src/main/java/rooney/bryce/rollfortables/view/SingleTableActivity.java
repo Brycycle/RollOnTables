@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.support.annotation.Nullable;
 
 /**
- * Created by Brycycle on 11/10/2017.
+ * Created by Bryce Rooney on 11/10/2017.
  *
  * Activity for displaying details of a selected table
  */
