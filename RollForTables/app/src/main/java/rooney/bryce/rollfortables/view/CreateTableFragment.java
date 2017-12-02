@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import rooney.bryce.rollfortables.Classes.RollTable;
 import rooney.bryce.rollfortables.R;
 import rooney.bryce.rollfortables.Common.Constants;
 
@@ -108,6 +109,10 @@ public class CreateTableFragment extends Fragment {
                 Integer.parseInt(etNumResults.getText().toString()),
                 die
         );
+
+
+
+
     }
 
 

@@ -18,19 +18,15 @@ public class SingleTableActivity extends Activity implements CreateTableFragment
         TableViewFragment.tableViewListener {
 
 
-    RollTable currentRollTable;
+    RollTable currentActivityRollTable;
 
 
     @Override
     public void goToEditTableView() {
-
+        //TODO display edit table frag and pass currentActivityRolltable
     }
 
-    @Override
-    public int rollOnTable() {
 
-        return 0;
-    }
 
     @Override
     public void createTableFromView(String title, @Nullable String description, int numResults, int[] die) {

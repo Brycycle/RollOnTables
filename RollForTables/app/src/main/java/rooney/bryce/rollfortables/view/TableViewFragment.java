@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import rooney.bryce.rollfortables.Classes.RollTable;
 import rooney.bryce.rollfortables.R;
 import rooney.bryce.rollfortables.Common.Constants;
 
@@ -23,14 +24,14 @@ import rooney.bryce.rollfortables.Common.Constants;
 
 public class TableViewFragment extends Fragment {
 
-    TextView tvTitle, tvDescription;
-    ListView lvTableDetails;
+    public static TextView tvTitle, tvDescription;
+    public static ListView lvTableDetails;
     public static Button bRoll, bEdit;
+    public RollTable rollTable;
 
     tableViewListener activityCommanderSingleTableFrag;
 
     public interface tableViewListener{
-        int rollOnTable();
         void goToEditTableView();
     }
 
@@ -57,7 +58,7 @@ public class TableViewFragment extends Fragment {
         bRoll.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-                        activityCommanderSingleTableFrag.rollOnTable();
+//                        activityCommanderSingleTableFrag.rollOnTable();
 
                     }
                 }
@@ -76,5 +77,13 @@ public class TableViewFragment extends Fragment {
 
         return super.onCreateView(inflater, container, savedInstanceState);
 
+    }
+
+    public void receiveRollTable(RollTable rolltable){
+        this.rollTable = rolltable;
+    }
+
+    private void rollOnTable(){
+        //TODO roll with die values and display toast in current activity
     }
 }
