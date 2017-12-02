@@ -27,17 +27,18 @@ public class TableViewFragment extends Fragment {
     ListView lvTableDetails;
     public static Button bRoll, bEdit;
 
-    tableViewListener activityCommanderSingleTable;
+    tableViewListener activityCommanderSingleTableFrag;
 
     public interface tableViewListener{
-
+        int rollOnTable();
+        void goToEditTableView();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try{
-            activityCommanderSingleTable = (tableViewListener) context;
+            activityCommanderSingleTableFrag = (tableViewListener) context;
         } catch(ClassCastException e){
             throw new ClassCastException(context.toString());
         }
@@ -56,7 +57,7 @@ public class TableViewFragment extends Fragment {
         bRoll.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-
+                        activityCommanderSingleTableFrag.rollOnTable();
 
                     }
                 }
@@ -66,8 +67,7 @@ public class TableViewFragment extends Fragment {
         bEdit.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-
-
+                        activityCommanderSingleTableFrag.goToEditTableView();
                     }
                 }
         );

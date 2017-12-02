@@ -26,7 +26,7 @@ public class CreateTableFragment extends Fragment {
     Spinner sNumDie, sDieType;
     static Button bCreate;
 
-    createTableListener activityCommanderSingleTable;
+    createTableListener activityCommanderCreateTableFrag;
 
     public interface createTableListener{
         void createTableFromView(String title, @Nullable String description, int numResults,
@@ -37,7 +37,7 @@ public class CreateTableFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try{
-            activityCommanderSingleTable = (createTableListener) context;
+            activityCommanderCreateTableFrag = (createTableListener) context;
         } catch(ClassCastException e){
             throw new ClassCastException(context.toString());
         }
@@ -102,7 +102,7 @@ public class CreateTableFragment extends Fragment {
         die[1] = Integer.parseInt(sDieType.getSelectedItem().toString());
 
         //submit info to activity
-        activityCommanderSingleTable.createTableFromView(
+        activityCommanderCreateTableFrag.createTableFromView(
                 etTitle.getText().toString(),
                 descriptionText,
                 Integer.parseInt(etNumResults.getText().toString()),
