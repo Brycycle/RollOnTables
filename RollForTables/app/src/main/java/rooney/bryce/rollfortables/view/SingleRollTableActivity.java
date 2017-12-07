@@ -14,7 +14,7 @@ import rooney.bryce.rollfortables.Classes.RollTable;
  * Activity for displaying details of a selected table
  */
 
-public class SingleTableActivity extends Activity implements CreateTableFragment.createTableListener,
+public class SingleRollTableActivity extends Activity implements CreateTableFragment.createTableListener,
         TableViewFragment.tableViewListener {
 
 

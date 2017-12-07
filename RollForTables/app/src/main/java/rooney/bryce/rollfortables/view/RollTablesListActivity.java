@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import rooney.bryce.rollfortables.R;
 
-public class TableListActivity extends AppCompatActivity {
+public class RollTablesListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,7 +21,7 @@ import rooney.bryce.rollfortables.Common.Constants;
  * Created by Bryce Rooney on 11/10/2017.
  */
 
-public class CreateTableFragment extends Fragment {
+public class CreateRollTableFragment extends Fragment {
 
     EditText etTitle, etDiscription, etNumResults;
     Spinner sNumDie, sDieType;

@@ -22,7 +22,7 @@ import rooney.bryce.rollfortables.Common.Constants;
  * Created by Bryce Rooney on 11/10/2017.
  */
 
-public class TableViewFragment extends Fragment {
+public class RollTableViewFragment extends Fragment {
 
     public static TextView tvTitle, tvDescription;
     public static ListView lvTableDetails;
