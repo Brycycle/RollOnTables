@@ -115,7 +115,6 @@ public class RollTableDataSource {
             values.put(SQLiteHelper.COLUMN_NUM_RESULTS, "");
         }
 
-        //TODO make sure these are put in properly with how they are stored in DB
         values.put(SQLiteHelper.COLUMN_RESULTS_LIST, "");
         values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, "");
         values.put(SQLiteHelper.COLUMN_SOURCE, 3);
@@ -132,6 +131,9 @@ public class RollTableDataSource {
         int id = rollTable.getId();
         //TODO find table in DB with id, enter all values of rollTable into DB, return
 
+
+
+        //
 
         RollTable updatedRollTable = getRollTable(id);
         return updatedRollTable;

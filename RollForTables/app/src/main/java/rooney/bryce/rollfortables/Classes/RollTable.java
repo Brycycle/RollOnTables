@@ -1,5 +1,8 @@
 package rooney.bryce.rollfortables.Classes;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -19,15 +22,15 @@ public class RollTable {
 
     public int[] die = new int[2];
 
-    public int numResults; //cant be larger than die[1]*die[0]
+    public int numResults;
 
-    public List<String> resultsList = new ArrayList<String>();
+    public ArrayList<String> resultsList = new ArrayList<String>();
 
-    public List<Integer> rangesForResults = new ArrayList<Integer>();
+    public ArrayList<Integer> rangesForResults = new ArrayList<Integer>();
 
     public int source;
 
-    public List<String> tags = new ArrayList<String>();
+    public ArrayList<String> tags = new ArrayList<String>();
 
     /**
         Blank Constructor
@@ -133,6 +136,19 @@ public class RollTable {
         this.tags = tags;
     }
 
+    public void setResultsListFromJSONString(String s){
+
+    }
+
+    public void setRangesForResultsFromJSONString(String s){
+
+    }
+
+    public void setTagsFromJSONString(String s){
+
+    }
+
+
     /**
      * Methods
      */
@@ -186,4 +202,30 @@ public class RollTable {
 
         return resultText;
     }
+
+    public String getResultsListJSONString(){
+        JSONObject obj = new JSONObject();
+        try {
+            for(int i = 0; i < resultsList.size(); i++){
+                obj.put(i, resultsList.get(i).toString());
+            }
+
+        } catch (JSONException e) {
+            trace("DefaultListItem.toString JSONException: "+e.getMessage());
+        }
+        return obj.toString();
+    }
+
+    public String getRangesForResultsJSONString(){
+        JSONObject jsonObj =
+
+        return "";
+    }
+
+    public String getTagsJSONString(){
+
+        return "";
+    }
+
+
 }
