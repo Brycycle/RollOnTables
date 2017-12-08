@@ -1,6 +1,7 @@
 package rooney.bryce.rollfortables.view;
 
 import android.app.Fragment;
+import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import rooney.bryce.rollfortables.Classes.RollTable;
 import rooney.bryce.rollfortables.R;
 import rooney.bryce.rollfortables.Common.Constants;
+import rooney.bryce.rollfortables.util.RollTableViewAdapter;
 import rooney.bryce.rollfortables.util.RollTablesListAdapter;
 
 
@@ -25,7 +28,7 @@ import rooney.bryce.rollfortables.util.RollTablesListAdapter;
  * Created by Bryce Rooney on 11/10/2017.
  */
 
-public class RollTableViewFragment extends Fragment {
+public class RollTableViewFragment extends ListFragment {
 
     public static TextView tvTitle, tvDescription;
     public static ListView lvTableDetails;
@@ -77,10 +80,8 @@ public class RollTableViewFragment extends Fragment {
         );
 
         ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
-        RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
-        ListView listView = (ListView) findViewById(R.id.rollTablesListView);
-
-
+        rollTableArrayList.add(rollTable);
+        setListAdapter(new RollTableViewAdapter(getActivity(),rollTableArrayList));
 
         return super.onCreateView(inflater, container, savedInstanceState);
 
@@ -89,6 +90,7 @@ public class RollTableViewFragment extends Fragment {
     public void receiveRollTable(RollTable rollTable){
         this.rollTable = rollTable;
     }
+
 
     private void rollOnTable(){
         //TODO roll with die values and display toast in current activity
