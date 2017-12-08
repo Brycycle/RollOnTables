@@ -83,7 +83,7 @@ public class RollTableDataSource {
      * a RollTable object from the details stored in the database and returns it.
      */
     public RollTable createRollTable(@Nullable String title, @Nullable String description, @Nullable int[] die,
-                                     @Nullable int numResults) {
+                                     int numResults) {
 
         // TODO
 
@@ -97,27 +97,23 @@ public class RollTableDataSource {
             values.put(SQLiteHelper.COLUMN_DESCRIPTION, "");
         }
         if(description != null){
-            values.put(SQLiteHelper.COLUMN_DIE_0, die[0]);
+            values.put(SQLiteHelper.COLUMN_DIE_0, Integer.toString(die[0]));
         }
         else{
             values.put(SQLiteHelper.COLUMN_DIE_0, "");
         }
         if(description != null){
-            values.put(SQLiteHelper.COLUMN_DIE_1, die[1]);
+            values.put(SQLiteHelper.COLUMN_DIE_1, Integer.toString(die[1]));
         }
         else{
             values.put(SQLiteHelper.COLUMN_DIE_1, "");
         }
-        if(description != null){
-            values.put(SQLiteHelper.COLUMN_NUM_RESULTS, numResults);
-        }
-        else{
-            values.put(SQLiteHelper.COLUMN_NUM_RESULTS, "");
-        }
+            values.put(SQLiteHelper.COLUMN_NUM_RESULTS, Integer.toString(numResults));
+
 
         values.put(SQLiteHelper.COLUMN_RESULTS_LIST, "");
         values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, "");
-        values.put(SQLiteHelper.COLUMN_SOURCE, 3);
+        values.put(SQLiteHelper.COLUMN_SOURCE, Integer.toString(3));
         values.put(SQLiteHelper.COLUMN_TAGS, "");
 
         // Insert ContentValues into row in events table and obtain row ID
@@ -133,31 +129,31 @@ public class RollTableDataSource {
 
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.COLUMN_TITLE, rollTable.getTitle());
-        if(rollTable.description != null){
-            values.put(SQLiteHelper.COLUMN_DESCRIPTION, rollTable.description);
+        if(rollTable.getDescription() != null){
+            values.put(SQLiteHelper.COLUMN_DESCRIPTION, rollTable.getDescription());
         }
         else{
             values.put(SQLiteHelper.COLUMN_DESCRIPTION, "");
         }
-        values.put(SQLiteHelper.COLUMN_DIE_0, rollTable.die[0]);
-        values.put(SQLiteHelper.COLUMN_DIE_1, rollTable.die[1]);
-        values.put(SQLiteHelper.COLUMN_NUM_RESULTS, rollTable.numResults);
-        values.put(SQLiteHelper.COLUMN_SOURCE, rollTable.getSource());
+        values.put(SQLiteHelper.COLUMN_DIE_0, Integer.toString(rollTable.getDie()[0]) );
+        values.put(SQLiteHelper.COLUMN_DIE_1, Integer.toString(rollTable.getDie()[1]));
+        values.put(SQLiteHelper.COLUMN_NUM_RESULTS, Integer.toString(rollTable.getNumResults()));
+        values.put(SQLiteHelper.COLUMN_SOURCE, Integer.toString(rollTable.getSource()));
 
-        if(rollTable.resultsList != null){
+        if(rollTable.getResultsList() != null){
             values.put(SQLiteHelper.COLUMN_RESULTS_LIST, rollTable.getResultsListJSONString());
         }
         else{
             values.put(SQLiteHelper.COLUMN_RESULTS_LIST, "");
         }
 
-        if(rollTable.rangesForResults != null){
+        if(rollTable.getRangesForResults() != null){
             values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, rollTable.getRangesForResultsJSONString());
         }
         else{
             values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, "");
         }
-        if(rollTable.tags != null){
+        if(rollTable.getTags() != null){
             values.put(SQLiteHelper.COLUMN_TAGS, rollTable.getTagsJSONString());
         }
         else{
@@ -199,8 +195,8 @@ public class RollTableDataSource {
      * @return
      * List of all Event objects in database
      */
-    public List<RollTable> getAllRollTables(@Nullable List<String> tags) {
-        List<RollTable> rollTables = new ArrayList<>();
+    public ArrayList<RollTable> getAllRollTables(@Nullable ArrayList<String> tags) {
+        ArrayList<RollTable> rollTables = new ArrayList<>();
         Cursor cursor = database.query(SQLiteHelper.TABLE_ROLL_TABLES, allColumns, null,
                 null, null, null, null);
         cursor.moveToFirst();
@@ -212,7 +208,7 @@ public class RollTableDataSource {
         }
         cursor.close();
 
-        List<RollTable> matchedRollTables = new ArrayList<>();
+        ArrayList<RollTable> matchedRollTables = new ArrayList<>();
         int numTables = rollTables.size();
 
         if(tags != null) {

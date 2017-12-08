@@ -24,13 +24,13 @@ public class RollTable {
 
     public int numResults;
 
-    public List<String> resultsList = new ArrayList<String>();
+    public ArrayList<String> resultsList = new ArrayList<String>();
 
-    public List<Integer> rangesForResults = new ArrayList<Integer>();
+    public ArrayList<Integer> rangesForResults = new ArrayList<Integer>();
 
     public int source;
 
-    public List<String> tags = new ArrayList<String>();
+    public ArrayList<String> tags = new ArrayList<String>();
 
     /**
         Blank Constructor
@@ -79,11 +79,11 @@ public class RollTable {
         return numResults;
     }
 
-    public List<String> getResultsList() {
+    public ArrayList<String> getResultsList() {
         return resultsList;
     }
 
-    public List<Integer> getRangesForResults() {
+    public ArrayList<Integer> getRangesForResults() {
         return rangesForResults;
     }
 
@@ -91,7 +91,7 @@ public class RollTable {
         return source;
     }
 
-    public List<String> getTags() {
+    public ArrayList<String> getTags() {
         return tags;
     }
 
@@ -120,11 +120,11 @@ public class RollTable {
         this.numResults = numResults;
     }
 
-    public void setResultsList(List<String> resultsList) {
+    public void setResultsList(ArrayList<String> resultsList) {
         this.resultsList = resultsList;
     }
 
-    public void setRangesForResults(List<Integer> rangesForResults) {
+    public void setRangesForResults(ArrayList<Integer> rangesForResults) {
         this.rangesForResults = rangesForResults;
     }
 
@@ -132,7 +132,7 @@ public class RollTable {
         this.source = source;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
 
@@ -234,7 +234,7 @@ public class RollTable {
         JSONObject obj = new JSONObject();
         try {
             for(int i = 0; i < resultsList.size(); i++){
-                obj.put(Integer.toString(i), resultsList.get(i).toString());
+                obj.put(Integer.toString(i), resultsList.get(i));
             }
 
         } catch (JSONException e) {
@@ -260,7 +260,7 @@ public class RollTable {
         JSONObject obj = new JSONObject();
         try {
             for(int i = 0; i < tags.size(); i++){
-                obj.put(Integer.toString(i), tags.get(i).toString());
+                obj.put(Integer.toString(i), tags.get(i));
             }
 
         } catch (JSONException e) {

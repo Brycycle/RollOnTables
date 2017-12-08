@@ -22,6 +22,9 @@ public class Constants {
     public static String NUM_RESULTS_TOO_LARGE = "Number of results desired cannot exceed number of possible rolls!";
     public static String NULL_ENTRIES = "All entries must be filled. Please make corrections! ";
 
+    //Fragment number ascociation
+    public static int ROLL_TABLE_VIEW = 0;
+    public static int CREATE_ROLL_TABLE = 1;
 
     //Tags
     public static String TAG_CREATION = "Creation";

@@ -20,7 +20,7 @@ public class SingleRollTableActivity extends Activity implements CreateRollTable
 
     RollTable currentActivityRollTable;
 
-    
+
 
 
     //From TableView to editTable

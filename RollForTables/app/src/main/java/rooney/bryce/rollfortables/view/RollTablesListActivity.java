@@ -1,26 +1,142 @@
 package rooney.bryce.rollfortables.view;
 
+import android.app.ListActivity;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rooney.bryce.rollfortables.Classes.RollTable;
+import rooney.bryce.rollfortables.Common.Constants;
 import rooney.bryce.rollfortables.R;
+import rooney.bryce.rollfortables.util.RollTableDataSource;
 import rooney.bryce.rollfortables.util.RollTablesListAdapter;
+import rooney.bryce.rollfortables.util.SQLiteHelper;
 
-public class RollTablesListActivity extends AppCompatActivity {
+public class RollTablesListActivity extends ListActivity{
+
+    public RollTableDataSource datasource;
+    private ArrayList<String> tagsToSearch = new ArrayList<>();
+    public Button bRefresh, bCreateNew;
+    public Spinner sTags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roll_tables_list);
 
-        ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
-        RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
+        datasource = RollTableDataSource.getInstance(this);
+        datasource.open();
+        addInitialRollTables();
+
         ListView listView = (ListView) findViewById(R.id.rollTablesListView);
+        sTags = (Spinner) findViewById(R.id.spinnerTags);
+        bRefresh = (Button) findViewById(R.id.refreshButton);
+        bRefresh.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        onRefreashButtonClick();
+                    }
+                }
+        );
+        bCreateNew = (Button) findViewById(R.id.createButton);
+        bCreateNew.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        onCreateRollTableButtonClick();
+                    }
+                }
+        );
+
+        ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
+        rollTableArrayList = datasource.getAllRollTables(null);
+        RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
+        listView.setAdapter(adapter);
+
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Toast.makeText(this, "Item " + position + " clicked", Toast.LENGTH_SHORT).show();
+//        //pull selected tags from view
+//
+//        // Get ID of selected event based on position in list
+//        long _id = datasource.getAllRollTables(null).get(position).getId();
+//
+//        // Redirect to SingleTableActivity
+//        Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
+//        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 0);
+//        SingleTableIntent.putExtra("CHOSEN_ROLLTABLE_FROM_LIST", _id);
+//        startActivity(SingleTableIntent);
+    }
+
+    private void onCreateRollTableButtonClick(){
+        Toast.makeText(this, "Create Table clicked", Toast.LENGTH_SHORT).show();
+
+//        Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
+//        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 1);
+//        SingleTableIntent.putExtra("CHOSEN_ROLLTABLE_FROM_LIST", "");
+//        startActivity(SingleTableIntent);
+    }
+
+    private void onRefreashButtonClick(){
+        Toast.makeText(this, "Refresh clicked", Toast.LENGTH_SHORT).show();
+
+//        ListView listView = (ListView) findViewById(R.id.rollTablesListView);
+//        ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
+//        rollTableArrayList = datasource.getAllRollTables(tagsToSearch);
+//        RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
+//        listView.setAdapter(adapter);
+    }
 
 
+    private void addInitialRollTables(){
+        int die10[] = {2,10};
+        int die12[] = {1,12};
+
+        RollTable r1 = new RollTable();
+        r1 = datasource.createRollTable("Test1", "This is the Description", die10, 10);
+        ArrayList<String> results = new ArrayList<>();
+        for(int i = 1; i <11; i++) {
+            results.add("Result " + i);
+        }
+        ArrayList<Integer> ranges = new ArrayList<>();
+        for(int j = 1; j <11; j++){
+            ranges.add(j);
+        }
+        ArrayList<String> tags = new ArrayList<>();
+        r1.setResultsList(results);
+        r1.setRangesForResults(ranges);
+        tags.add(Constants.TAG_CREATION);
+        r1.setTags(tags);
+        datasource.updateRollTable(r1);
+
+        RollTable r2 = new RollTable();
+        r2 = datasource.createRollTable("Test2", "This is the Description that is longer than the other one by some degree more", die12, 12);
+        ArrayList<String> results2 = new ArrayList<>();
+        for(int i = 1; i <13; i++) {
+            results2.add("Result " + i + ". Look at these results! hopefully this displays properly.");
+        }
+        ArrayList<Integer> ranges2 = new ArrayList<>();
+        for(int j = 1; j <11; j++){
+            ranges2.add(j);
+        }
+        ArrayList<String> tags2 = new ArrayList<>();
+        r2.setResultsList(results2);
+        r2.setRangesForResults(ranges2);
+        tags2.add(Constants.TAG_EFFECT);
+        tags2.add(Constants.TAG_EVENT);
+        r2.setTags(tags2);
+        datasource.updateRollTable(r2);
     }
 }

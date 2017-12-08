@@ -1,5 +1,6 @@
 package rooney.bryce.rollfortables.util;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -44,7 +45,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        //TODO figure out how to store array lists into sql as strings. convert to JSON objects?
         String SQL_CREATE_TABLE = "CREATE TABLE events (" +
                 COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_TITLE +" TEXT NOT NULL," +
@@ -59,6 +59,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 
         db.execSQL(SQL_CREATE_TABLE);
+
+
     }
 
 
@@ -70,4 +72,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROLL_TABLES);
         onCreate(db);
     }
+
+
+
 }
