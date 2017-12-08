@@ -1,5 +1,6 @@
 package rooney.bryce.rollfortables.view;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -23,7 +25,7 @@ import rooney.bryce.rollfortables.util.RollTableDataSource;
 import rooney.bryce.rollfortables.util.RollTablesListAdapter;
 import rooney.bryce.rollfortables.util.SQLiteHelper;
 
-public class RollTablesListActivity extends ListActivity{
+public class RollTablesListActivity extends Activity{
 
     public RollTableDataSource datasource;
     private ArrayList<String> tagsToSearch = new ArrayList<>();
@@ -40,6 +42,13 @@ public class RollTablesListActivity extends ListActivity{
         addInitialRollTables();
 
         ListView listView = findViewById(R.id.list);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                onListItemClick(i);
+            }
+        });
+
         sTags = findViewById(R.id.spinnerTags);
         bRefresh = findViewById(R.id.refreshButton);
         bRefresh.setOnClickListener(
@@ -65,8 +74,7 @@ public class RollTablesListActivity extends ListActivity{
 
     }
 
-    @Override
-    protected void onListItemClick(ListView listView, View v, int position, long id) {
+    private void onListItemClick(int position) {
         Toast.makeText(this, "Item " + position + " clicked", Toast.LENGTH_SHORT).show();
 //        //pull selected tags from view
 //
