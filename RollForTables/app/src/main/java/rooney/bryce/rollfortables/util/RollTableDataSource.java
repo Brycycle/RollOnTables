@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -239,19 +240,23 @@ public class RollTableDataSource {
     private RollTable cursorToRollTable(Cursor cursor) {
         RollTable rollTable = new RollTable();
 
-        rollTable.setTitle(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TITLE)));
-        rollTable.setDescription(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_DESCRIPTION)));
+        if(cursor != null && cursor.moveToFirst()) {
+            rollTable.setTitle(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TITLE)));
+            rollTable.setDescription(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_DESCRIPTION)));
 
-        int[] die = new int[2];
-        die[0] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_0));
-        die[1] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_1));
-        rollTable.setDie(die);
-        rollTable.setNumResults(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_NUM_RESULTS)));
-        rollTable.setSource(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_SOURCE)));
-        rollTable.setRangesForResultsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
-        rollTable.setResultsListFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RESULTS_LIST)));
-        rollTable.setTagsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
-
+            int[] die = new int[2];
+            die[0] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_0));
+            die[1] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_1));
+            rollTable.setDie(die);
+            rollTable.setNumResults(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_NUM_RESULTS)));
+            rollTable.setSource(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_SOURCE)));
+            rollTable.setRangesForResultsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
+            rollTable.setResultsListFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RESULTS_LIST)));
+            rollTable.setTagsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
+        }
+        else{
+            
+        }
 
         return rollTable;
     }
