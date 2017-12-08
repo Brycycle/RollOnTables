@@ -207,28 +207,29 @@ public class RollTableDataSource {
             rollTables.add(rollTable);
             cursor.moveToNext();
         }
-//        cursor.close();
-//
-//        ArrayList<RollTable> matchedRollTables = new ArrayList<>();
-//        int numTables = rollTables.size();
-//
-//        if(tags != null) {
-//            for(int i = 0; i < numTables; i++){
-//                RollTable r = rollTables.get(i);
-//                List<String> rTags = r.getTags();
-//                if(rTags != null){
-//                    if(rTags.containsAll(tags)){
-//                        matchedRollTables.add(r);
-//                    }
-//                }
-//            }
-//
-//
-//            return matchedRollTables;
-//        }
-//        else{
+        cursor.close();
+
+
+        ArrayList<RollTable> matchedRollTables = new ArrayList<>();
+        int numTables = rollTables.size();
+        //Filter with tags
+        if(tags != null) {
+            for(int i = 0; i < numTables; i++){
+                RollTable r = rollTables.get(i);
+                List<String> rTags = r.getTags();
+                if(rTags != null){
+                    if(rTags.containsAll(tags)){
+                        matchedRollTables.add(r);
+                    }
+                }
+            }
+
+
+            return matchedRollTables;
+        }
+        else{
             return rollTables;
-//        }
+        }
 
     }
 
@@ -239,18 +240,18 @@ public class RollTableDataSource {
         RollTable rollTable = new RollTable();
 
         if(cursor != null) {
-//            rollTable.setTitle(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TITLE)));
-//            rollTable.setDescription(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_DESCRIPTION)));
+            rollTable.setTitle(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TITLE)));
+            rollTable.setDescription(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_DESCRIPTION)));
 
-//            int[] die = new int[2];
-//            die[0] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_0));
-//            die[1] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_1));
-//            rollTable.setDie(die);
-//            rollTable.setNumResults(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_NUM_RESULTS)));
-//            rollTable.setSource(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_SOURCE)));
-//            rollTable.setRangesForResultsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
-//            rollTable.setResultsListFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RESULTS_LIST)));
-//            rollTable.setTagsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
+            int[] die = new int[2];
+            die[0] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_0));
+            die[1] = cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_DIE_1));
+            rollTable.setDie(die);
+            rollTable.setNumResults(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_NUM_RESULTS)));
+            rollTable.setSource(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_SOURCE)));
+            rollTable.setRangesForResultsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
+            rollTable.setResultsListFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RESULTS_LIST)));
+            rollTable.setTagsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
 
             rollTable.setTitle("CURSOR Not NULL");
             rollTable.setDescription("shtrhsthsrthsfghsfrthsfrghsftrhs stfrhs frt h sr th srt h sftrh");
