@@ -13,9 +13,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import rooney.bryce.rollfortables.Classes.RollTable;
 import rooney.bryce.rollfortables.R;
 import rooney.bryce.rollfortables.Common.Constants;
+import rooney.bryce.rollfortables.util.RollTablesListAdapter;
 
 
 /**
@@ -72,6 +75,10 @@ public class RollTableViewFragment extends Fragment {
                     }
                 }
         );
+
+        ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
+        RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
+        ListView listView = (ListView) findViewById(R.id.rollTablesListView);
 
 
 
