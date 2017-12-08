@@ -127,7 +127,7 @@ public class RollTablesListActivity extends Activity{
         r1.setRangesForResults(ranges);
         tags.add(Constants.TAG_CREATION);
         r1.setTags(tags);
-        datasource.updateRollTable(r1);
+//        datasource.updateRollTable(r1);
 
         RollTable r2 = new RollTable();
         r2 = datasource.createRollTable("Test2", "This is the Description that is longer than the other one by some degree more", die12, 12);
@@ -145,6 +145,6 @@ public class RollTablesListActivity extends Activity{
         tags2.add(Constants.TAG_EFFECT);
         tags2.add(Constants.TAG_EVENT);
         r2.setTags(tags2);
-        datasource.updateRollTable(r2);
+//        datasource.updateRollTable(r2);
     }
 }
