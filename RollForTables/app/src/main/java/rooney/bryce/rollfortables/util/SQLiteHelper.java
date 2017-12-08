@@ -48,14 +48,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String SQL_CREATE_TABLE = "CREATE TABLE events (" +
                 COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_TITLE +" TEXT NOT NULL," +
-                COLUMN_DESCRIPTION +"TEXT" +
-                COLUMN_DIE_0 +"INTEGER NOT NULL" +
-                COLUMN_DIE_1 +"INTEGER NOT NULL" +
-                COLUMN_NUM_RESULTS +"INTEGER NOT NULL"+
-                COLUMN_RESULTS_LIST + "TEXT"+
-                COLUMN_RANGES_FOR_RESULTS + "TEXT"+
-                COLUMN_SOURCE + "INTEGER NOT NULL"+
-                COLUMN_TAGS + "TEXT)";
+                COLUMN_DESCRIPTION +" TEXT" +
+                COLUMN_DIE_0 +" INTEGER NOT NULL" +
+                COLUMN_DIE_1 +" INTEGER NOT NULL" +
+                COLUMN_NUM_RESULTS +" INTEGER NOT NULL"+
+                COLUMN_RESULTS_LIST + " TEXT"+
+                COLUMN_RANGES_FOR_RESULTS + " TEXT"+
+                COLUMN_SOURCE + " INTEGER NOT NULL"+
+                COLUMN_TAGS + " TEXT)";
 
 
         db.execSQL(SQL_CREATE_TABLE);
