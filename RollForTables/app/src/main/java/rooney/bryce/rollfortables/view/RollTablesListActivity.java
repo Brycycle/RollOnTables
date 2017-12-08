@@ -39,17 +39,17 @@ public class RollTablesListActivity extends ListActivity{
         datasource.open();
         addInitialRollTables();
 
-        ListView listView = (ListView) findViewById(R.id.rollTablesListView);
-        sTags = (Spinner) findViewById(R.id.spinnerTags);
-        bRefresh = (Button) findViewById(R.id.refreshButton);
+        ListView listView = findViewById(R.id.list);
+        sTags = findViewById(R.id.spinnerTags);
+        bRefresh = findViewById(R.id.refreshButton);
         bRefresh.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-                        onRefreashButtonClick();
+                        onRefreshButtonClick();
                     }
                 }
         );
-        bCreateNew = (Button) findViewById(R.id.createButton);
+        bCreateNew = findViewById(R.id.createButton);
         bCreateNew.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -66,7 +66,7 @@ public class RollTablesListActivity extends ListActivity{
     }
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    protected void onListItemClick(ListView listView, View v, int position, long id) {
         Toast.makeText(this, "Item " + position + " clicked", Toast.LENGTH_SHORT).show();
 //        //pull selected tags from view
 //
@@ -89,7 +89,7 @@ public class RollTablesListActivity extends ListActivity{
 //        startActivity(SingleTableIntent);
     }
 
-    private void onRefreashButtonClick(){
+    private void onRefreshButtonClick(){
         Toast.makeText(this, "Refresh clicked", Toast.LENGTH_SHORT).show();
 
 //        ListView listView = (ListView) findViewById(R.id.rollTablesListView);

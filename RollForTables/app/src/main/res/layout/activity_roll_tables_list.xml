@@ -8,7 +8,7 @@
     tools:context="rooney.bryce.rollfortables.view.TableListActivity">
 
     <ListView
-        android:id="@+id/rollTablesListView"
+        android:id="@+id/list"
         android:layout_width="368dp"
         android:layout_height="437dp"
         android:layout_marginBottom="8dp"
