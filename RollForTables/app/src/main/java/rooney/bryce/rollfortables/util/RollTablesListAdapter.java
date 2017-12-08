@@ -37,7 +37,7 @@ public class RollTablesListAdapter extends ArrayAdapter<RollTable>{
             tableDescriptionText.setText(rollTable.getDescription());
         }
         else{
-            tableDescriptionText.setText("");
+            tableDescriptionText.setText(rollTable.getDescription());
         }
         tableSourceText.setText(Integer.toString(rollTable.getSource()));
 
