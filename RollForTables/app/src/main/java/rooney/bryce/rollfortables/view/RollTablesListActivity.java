@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -72,6 +73,24 @@ public class RollTablesListActivity extends Activity{
         RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
         listView.setAdapter(adapter);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        datasource.open();
+
+//        ListView listView =  findViewById(R.id.list);
+//        ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
+//        rollTableArrayList = datasource.getAllRollTables(tagsToSearch);
+//        RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
+//        listView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        datasource.close();
     }
 
     private void onListItemClick(int position) {
