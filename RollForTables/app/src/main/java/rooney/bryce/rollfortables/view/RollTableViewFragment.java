@@ -48,7 +48,7 @@ public class RollTableViewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_table_view, null);
+        View view = inflater.inflate(R.layout.fragment_roll_table_view, null);
 
         tvTitle = view.findViewById(R.id.textViewTitle);
         tvDescription = view.findViewById(R.id.textViewDiscription);
