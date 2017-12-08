@@ -31,7 +31,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "rollTable.db";
 
     // Increment this number to clear everything in database
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     /**
      * Returns an instance of this helper object given the activity
@@ -45,7 +45,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String SQL_CREATE_TABLE = "CREATE TABLE events (" +
+        String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS rollTables (" +
                 COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_TITLE +" TEXT NOT NULL," +
                 COLUMN_DESCRIPTION +" TEXT," +
