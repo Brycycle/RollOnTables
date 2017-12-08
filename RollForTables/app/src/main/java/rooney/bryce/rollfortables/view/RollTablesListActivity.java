@@ -69,6 +69,7 @@ public class RollTablesListActivity extends Activity{
         );
 
         ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
+        //TODO get getAllRollTables working
         rollTableArrayList = datasource.getAllRollTables(null);
         RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
         listView.setAdapter(adapter);
@@ -78,7 +79,7 @@ public class RollTablesListActivity extends Activity{
     @Override
     protected void onResume() {
         super.onResume();
-        datasource.open();
+//        datasource.open();
 
 //        ListView listView =  findViewById(R.id.list);
 //        ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
@@ -90,7 +91,7 @@ public class RollTablesListActivity extends Activity{
     @Override
     protected void onPause() {
         super.onPause();
-        datasource.close();
+//        datasource.close();
     }
 
     private void onListItemClick(int position) {
