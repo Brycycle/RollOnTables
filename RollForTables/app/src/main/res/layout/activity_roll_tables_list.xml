@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/phb_background_texture"
-    tools:context="rooney.bryce.rollfortables.view.TableListActivity">
+    tools:context="rooney.bryce.rollfortables.view.RollTablesListActivity">
 
     <ListView
         android:id="@+id/list"
