@@ -25,7 +25,7 @@ public class CreateRollTableFragment extends Fragment {
 
     EditText etTitle, etDescription, etNumResults;
     Spinner sNumDie, sDieType;
-    static Button bCreate;
+    Button bCreate;
 
     createTableListener activityCommanderCreateTableFrag;
 

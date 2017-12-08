@@ -20,18 +20,24 @@ public class SingleRollTableActivity extends Activity implements CreateRollTable
 
     RollTable currentActivityRollTable;
 
+    
 
+
+    //From TableView to editTable
     @Override
     public void goToEditTableDetailsView() {
         //pass currentActivityRollTable to editRollTableDetailsFragment and start frag
     }
 
+    //From Edit Details to Edit Entries
     @Override
     public void goToEditTableEntriesView(RollTable r) {
-
+        //update currentActivityRollTable and pass to EditTableEntriesFrag
+        //start EditTableEntriesFrag
     }
 
 
+    //From Create table to edit Entries
     @Override
     public void createTableFromView(String title, @Nullable String description, int numResults, int[] die) {
         //createRollTable call for database and get object as return, set as currentActivityRollTable
@@ -39,7 +45,5 @@ public class SingleRollTableActivity extends Activity implements CreateRollTable
         //start editRollTableEntriesFragment
     }
 
-    public void test(){
 
-    }
 }

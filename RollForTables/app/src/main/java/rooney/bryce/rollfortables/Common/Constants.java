@@ -23,5 +23,11 @@ public class Constants {
     public static String NULL_ENTRIES = "All entries must be filled. Please make corrections! ";
 
 
+    //Tags
+    public static String TAG_CREATION = "Creation";
+    public static String TAG_EFFECT = "Effect";
+    public static String TAG_EVENT = "Event";
+    public static String TAG_LOOT = "Loot";
+
 
 }
