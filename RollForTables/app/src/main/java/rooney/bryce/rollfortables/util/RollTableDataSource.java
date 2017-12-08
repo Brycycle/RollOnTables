@@ -255,7 +255,7 @@ public class RollTableDataSource {
             rollTable.setTagsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
         }
         else{
-            
+
         }
 
         return rollTable;

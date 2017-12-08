@@ -43,12 +43,12 @@ public class RollTablesListActivity extends Activity{
         addInitialRollTables();
 
         ListView listView = findViewById(android.R.id.list);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                onListItemClick(i);
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                onListItemClick(i);
+//            }
+//        });
 
         sTags = findViewById(R.id.spinnerTags);
         bRefresh = findViewById(R.id.refreshButton);
