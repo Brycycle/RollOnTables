@@ -42,7 +42,7 @@ public class RollTablesListActivity extends Activity{
         datasource.open();
         addInitialRollTables();
 
-        ListView listView = findViewById(R.id.list);
+        ListView listView = findViewById(android.R.id.list);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
