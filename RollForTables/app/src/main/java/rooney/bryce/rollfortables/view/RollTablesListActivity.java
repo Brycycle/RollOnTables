@@ -32,6 +32,7 @@ public class RollTablesListActivity extends Activity{
     private ArrayList<String> tagsToSearch = new ArrayList<>();
     public Button bRefresh, bCreateNew;
     public Spinner sTags;
+    public ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,7 @@ public class RollTablesListActivity extends Activity{
         datasource = RollTableDataSource.getInstance(this);
         datasource.open();
         addInitialRollTables();
-
-        ListView listView = findViewById(android.R.id.list);
+        listView = findViewById(R.id.list);
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -69,10 +69,10 @@ public class RollTablesListActivity extends Activity{
         );
 
         ArrayList<RollTable> rollTableArrayList = new ArrayList<RollTable>();
-        //TODO get getAllRollTables working
+        //TODO get getAllRollTables working, cursorTORollTable, setAdapter null reference
         rollTableArrayList = datasource.getAllRollTables(null);
         RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
-        listView.setAdapter(adapter);
+//        listView.setAdapter(adapter);
 
     }
 
@@ -104,17 +104,17 @@ public class RollTablesListActivity extends Activity{
 //        // Redirect to SingleTableActivity
 //        Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
 //        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 0);
-//        SingleTableIntent.putExtra("CHOSEN_ROLLTABLE_FROM_LIST", _id);
+//        SingleTableIntent.putExtra("ROLLTABLE_ID", _id);
 //        startActivity(SingleTableIntent);
     }
 
     private void onCreateRollTableButtonClick(){
         Toast.makeText(this, "Create Table clicked", Toast.LENGTH_SHORT).show();
 
-//        Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
-//        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 1);
-//        SingleTableIntent.putExtra("CHOSEN_ROLLTABLE_FROM_LIST", "");
-//        startActivity(SingleTableIntent);
+        Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
+        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 1);
+        SingleTableIntent.putExtra("ROLLTABLE_ID", "");
+        startActivity(SingleTableIntent);
     }
 
     private void onRefreshButtonClick(){

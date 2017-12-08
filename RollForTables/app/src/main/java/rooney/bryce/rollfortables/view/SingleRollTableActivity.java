@@ -2,11 +2,13 @@ package rooney.bryce.rollfortables.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import rooney.bryce.rollfortables.Classes.RollTable;
+import rooney.bryce.rollfortables.util.RollTableDataSource;
 
 /**
  * Created by Bryce Rooney on 11/10/2017.
@@ -19,9 +21,30 @@ public class SingleRollTableActivity extends Activity implements CreateRollTable
 
 
     RollTable currentActivityRollTable;
+    private RollTableDataSource datasource;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        datasource = RollTableDataSource.getInstance(this);
+        datasource.open();
 
+        // Determine which event was pressed
+        Bundle extras = getIntent().getExtras();
+        int fragToStart = extras.getInt("WHICH_FRAG_TO_START", 1);
+        int rollTableId = extras.getInt("ROLLTABLE_ID", 0);
+        currentActivityRollTable = datasource.getRollTable(rollTableId);
+
+        switch (fragToStart){
+            case 0:
+                break;
+            case 1:
+                break;
+            default:
+                break;
+        }
+    }
 
     //From TableView to editTable
     @Override
