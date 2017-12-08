@@ -31,7 +31,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "rollTable.db";
 
     // Increment this number to clear everything in database
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     /**
      * Returns an instance of this helper object given the activity

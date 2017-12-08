@@ -109,11 +109,12 @@ public class RollTablesListActivity extends Activity{
     }
 
     private void onCreateRollTableButtonClick(){
+        datasource.close();
         Toast.makeText(this, "Create Table clicked", Toast.LENGTH_SHORT).show();
 
-        Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
-        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 1);
-        SingleTableIntent.putExtra("ROLLTABLE_ID", 0);
+        Intent SingleTableIntent = new Intent(this.getApplicationContext(), SingleRollTableActivity.class);
+//        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 1);
+//        SingleTableIntent.putExtra("ROLLTABLE_ID", 0);
         startActivity(SingleTableIntent);
     }
 
