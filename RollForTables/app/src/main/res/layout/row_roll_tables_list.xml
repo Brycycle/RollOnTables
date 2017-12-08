@@ -3,63 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbarSize="30dp">
+    android:layout_height="wrap_content">
 
-    <NumberPicker
-        android:id="@+id/numberPicker"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-1dp"
-        android:layout_marginTop="0dp"
-        android:clickable="true"
-        android:foregroundTint="@color/colorPrimary"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        android:theme="@android:style/Theme.Light.NoTitleBar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="-21dp"></LinearLayout>
 
-    <NumberPicker
-        android:id="@+id/numberPicker2"
+    <TextView
+        android:id="@+id/tableTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="-36dp"
-        android:clickable="true"
-        android:foregroundTint="@color/colorPrimary"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        android:theme="@android:style/Theme.Light.NoTitleBar"
-        app:layout_constraintLeft_toRightOf="@+id/numberPicker"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="serif"
+        android:text="Table Title"
+        android:textColor="@color/PHB_red_headings"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/tableDescriptionText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="8dp"
-        android:text="-"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/numberPicker"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintLeft_toRightOf="@+id/numberPicker"
-        app:layout_constraintRight_toLeftOf="@+id/numberPicker2"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="serif"
+        android:text="Description of the table goes here. You could probably put a pretty decent amount of text here where you could describe things that are useful and meaningful to the DM."
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableTitleText" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="204dp"
-        android:layout_height="85dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintLeft_toRightOf="@+id/numberPicker2"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="102dp" />
+        android:id="@+id/tableSourceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="serif"
+        android:text="Source"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tableTitleText"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
