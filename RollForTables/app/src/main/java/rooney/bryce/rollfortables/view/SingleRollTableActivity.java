@@ -35,8 +35,8 @@ public class SingleRollTableActivity extends Activity implements CreateRollTable
         setContentView(R.layout.activity_single_roll_table);
 //        datasource = RollTableDataSource.getInstance(this);
 //        datasource.open();
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         // Determine which rollTable was pressed and what fragment to start
 //        Bundle extras = getIntent().getExtras();
@@ -52,9 +52,9 @@ public class SingleRollTableActivity extends Activity implements CreateRollTable
 //                rollTableViewFragment.receiveRollTable(currentActivityRollTable);
 //                break;
 //            case 1://create table
-//                transaction.replace(R.id.FrameSingleRollTable, createRollTableFragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
+                transaction.replace(R.id.FrameSingleRollTable, createRollTableFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
 //                break;
 //            default:
 //                break;
