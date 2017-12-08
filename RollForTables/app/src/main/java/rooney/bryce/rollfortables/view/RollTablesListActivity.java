@@ -72,7 +72,7 @@ public class RollTablesListActivity extends Activity{
         //TODO get getAllRollTables working, cursorTORollTable, setAdapter null reference
         rollTableArrayList = datasource.getAllRollTables(null);
         RollTablesListAdapter adapter = new RollTablesListAdapter(this, rollTableArrayList);
-//        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);
 
     }
 
@@ -98,14 +98,14 @@ public class RollTablesListActivity extends Activity{
         Toast.makeText(this, "Item " + position + " clicked", Toast.LENGTH_SHORT).show();
 //        //pull selected tags from view
 //
-//        // Get ID of selected event based on position in list
-//        long _id = datasource.getAllRollTables(null).get(position).getId();
-//
-//        // Redirect to SingleTableActivity
-//        Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
-//        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 0);
-//        SingleTableIntent.putExtra("ROLLTABLE_ID", _id);
-//        startActivity(SingleTableIntent);
+        // Get ID of selected event based on position in list
+        int _id = datasource.getAllRollTables(null).get(position).getId();
+
+        // Redirect to SingleTableActivity
+        Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
+        SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 0);
+        SingleTableIntent.putExtra("ROLLTABLE_ID", _id);
+        startActivity(SingleTableIntent);
     }
 
     private void onCreateRollTableButtonClick(){
@@ -113,7 +113,7 @@ public class RollTablesListActivity extends Activity{
 
         Intent SingleTableIntent = new Intent(this, SingleRollTableActivity.class);
         SingleTableIntent.putExtra("WHICH_FRAG_TO_START", 1);
-        SingleTableIntent.putExtra("ROLLTABLE_ID", "");
+        SingleTableIntent.putExtra("ROLLTABLE_ID", 0);
         startActivity(SingleTableIntent);
     }
 
