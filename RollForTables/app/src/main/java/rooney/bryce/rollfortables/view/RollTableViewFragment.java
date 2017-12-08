@@ -32,7 +32,7 @@ public class RollTableViewFragment extends Fragment {
     tableViewListener activityCommanderSingleTableFrag;
 
     public interface tableViewListener{
-        void goToEditTableView();
+        void goToEditTableDetailsView();
     }
 
     @Override
@@ -68,7 +68,8 @@ public class RollTableViewFragment extends Fragment {
         bEdit.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-                        activityCommanderSingleTableFrag.goToEditTableView();
+                        activityCommanderSingleTableFrag.goToEditTableDetailsView();
+
                     }
                 }
         );

@@ -128,12 +128,46 @@ public class RollTableDataSource {
     }
 
     public RollTable updateRollTable(RollTable rollTable){
-        int id = rollTable.getId();
-        //TODO find table in DB with id, enter all values of rollTable into DB, return
+        String id_string = "" + rollTable.getId();
 
 
+        ContentValues values = new ContentValues();
+        values.put(SQLiteHelper.COLUMN_TITLE, rollTable.getTitle());
+        if(rollTable.description != null){
+            values.put(SQLiteHelper.COLUMN_DESCRIPTION, rollTable.description);
+        }
+        else{
+            values.put(SQLiteHelper.COLUMN_DESCRIPTION, "");
+        }
+        values.put(SQLiteHelper.COLUMN_DIE_0, rollTable.die[0]);
+        values.put(SQLiteHelper.COLUMN_DIE_1, rollTable.die[1]);
+        values.put(SQLiteHelper.COLUMN_NUM_RESULTS, rollTable.numResults);
+        values.put(SQLiteHelper.COLUMN_SOURCE, rollTable.getSource());
 
-        //
+        if(rollTable.resultsList != null){
+            values.put(SQLiteHelper.COLUMN_RESULTS_LIST, rollTable.getResultsListJSONString());
+        }
+        else{
+            values.put(SQLiteHelper.COLUMN_RESULTS_LIST, "");
+        }
+
+        if(rollTable.rangesForResults != null){
+            values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, rollTable.getRangesForResultsJSONString());
+        }
+        else{
+            values.put(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS, "");
+        }
+        if(rollTable.tags != null){
+            values.put(SQLiteHelper.COLUMN_TAGS, rollTable.getTagsJSONString());
+        }
+        else{
+            values.put(SQLiteHelper.COLUMN_TAGS, "");
+        }
+
+        // Insert ContentValues into row in events table and obtain row ID
+        long id = database.update(SQLiteHelper.TABLE_ROLL_TABLES, values, "?=?", new String[] {SQLiteHelper.COLUMN_ID, id_string});
+
+
 
         RollTable updatedRollTable = getRollTable(id);
         return updatedRollTable;
@@ -149,7 +183,6 @@ public class RollTableDataSource {
     public RollTable getRollTable(long id) {
         Cursor cursor = null;
         String id_string = "" + id;
-        // TODO: Create query for single event here
         cursor = database.query(SQLiteHelper.TABLE_ROLL_TABLES, allColumns, "? = ?",
                 new String[] {SQLiteHelper.COLUMN_ID, id_string}, null, null, null);
 
@@ -166,24 +199,42 @@ public class RollTableDataSource {
      * @return
      * List of all Event objects in database
      */
-    public List<RollTable> getAllRollTables() {
+    public List<RollTable> getAllRollTables(@Nullable List<String> tags) {
         List<RollTable> rollTables = new ArrayList<>();
-
-        // TODO Query of all events with tags filters
         Cursor cursor = database.query(SQLiteHelper.TABLE_ROLL_TABLES, allColumns, null,
                 null, null, null, null);
-
         cursor.moveToFirst();
-
-        // Create Event objects for each item in list
+        // Create RollTable objects for each item in list
         while (!cursor.isAfterLast()) {
             RollTable rollTable = cursorToRollTable(cursor);
             rollTables.add(rollTable);
             cursor.moveToNext();
         }
-
         cursor.close();
-        return rollTables;
+
+        List<RollTable> matchedRollTables = new ArrayList<>();
+        int numTables = rollTables.size();
+
+        if(tags != null) {
+            int numTags = tags.size();
+            //TODO filter rollTables List
+            for(int i = 0; i < numTables; i++){
+                RollTable r = rollTables.get(i);
+                List<String> rTags = r.getTags();
+                if(rTags != null){
+                    if(rTags.containsAll(tags)){
+                        matchedRollTables.add(r);
+                    }
+                }
+            }
+
+
+            return matchedRollTables;
+        }
+        else{
+            return rollTables;
+        }
+
     }
 
     /*
@@ -201,11 +252,9 @@ public class RollTableDataSource {
         rollTable.setDie(die);
         rollTable.setNumResults(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_NUM_RESULTS)));
         rollTable.setSource(cursor.getInt(cursor.getColumnIndex(SQLiteHelper.COLUMN_SOURCE)));
-
-        //TODO make sure types match
-//        rollTable.setRangesForResults(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
-//        rollTable.setRangesForResults(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
-//        rollTable.setTags(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
+        rollTable.setRangesForResultsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RANGES_FOR_RESULTS)));
+        rollTable.setResultsListFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_RESULTS_LIST)));
+        rollTable.setTagsFromJSONString(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLUMN_TAGS)));
 
 
         return rollTable;

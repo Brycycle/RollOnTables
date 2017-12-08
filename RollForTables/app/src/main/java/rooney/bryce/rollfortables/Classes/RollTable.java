@@ -24,13 +24,13 @@ public class RollTable {
 
     public int numResults;
 
-    public ArrayList<String> resultsList = new ArrayList<String>();
+    public List<String> resultsList = new ArrayList<String>();
 
-    public ArrayList<Integer> rangesForResults = new ArrayList<Integer>();
+    public List<Integer> rangesForResults = new ArrayList<Integer>();
 
     public int source;
 
-    public ArrayList<String> tags = new ArrayList<String>();
+    public List<String> tags = new ArrayList<String>();
 
     /**
         Blank Constructor
@@ -137,15 +137,42 @@ public class RollTable {
     }
 
     public void setResultsListFromJSONString(String s){
-
+        JSONObject obj;
+        try {
+            obj = new JSONObject(s);
+            resultsList.clear();
+            for(int i = 0; i < resultsList.size(); i++){
+                resultsList.add(obj.get(Integer.toString(i)).toString());
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
     }
 
     public void setRangesForResultsFromJSONString(String s){
-
+        JSONObject obj;
+        try {
+            obj = new JSONObject(s);
+            rangesForResults.clear();
+            for(int i = 0; i < rangesForResults.size(); i++){
+                rangesForResults.add(Integer.parseInt(obj.get(Integer.toString(i)).toString()));
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
     }
 
     public void setTagsFromJSONString(String s){
-
+        JSONObject obj;
+        try {
+            obj = new JSONObject(s);
+            tags.clear();
+            for(int i = 0; i < tags.size(); i++){
+                tags.add(obj.get(Integer.toString(i)).toString());
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -207,24 +234,39 @@ public class RollTable {
         JSONObject obj = new JSONObject();
         try {
             for(int i = 0; i < resultsList.size(); i++){
-                obj.put(i, resultsList.get(i).toString());
+                obj.put(Integer.toString(i), resultsList.get(i).toString());
             }
 
         } catch (JSONException e) {
-            trace("DefaultListItem.toString JSONException: "+e.getMessage());
+            e.printStackTrace();
         }
         return obj.toString();
     }
 
     public String getRangesForResultsJSONString(){
-        JSONObject jsonObj =
+        JSONObject obj = new JSONObject();
+        try {
+            for(int i = 0; i < rangesForResults.size(); i++){
+                obj.put(Integer.toString(i), rangesForResults.get(i).toString());
+            }
 
-        return "";
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return obj.toString();
     }
 
     public String getTagsJSONString(){
+        JSONObject obj = new JSONObject();
+        try {
+            for(int i = 0; i < tags.size(); i++){
+                obj.put(Integer.toString(i), tags.get(i).toString());
+            }
 
-        return "";
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return obj.toString();
     }
 
 

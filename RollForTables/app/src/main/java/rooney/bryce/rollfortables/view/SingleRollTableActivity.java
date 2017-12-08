@@ -14,22 +14,28 @@ import rooney.bryce.rollfortables.Classes.RollTable;
  * Activity for displaying details of a selected table
  */
 
-public class SingleRollTableActivity extends Activity implements CreateTableFragment.createTableListener,
-        TableViewFragment.tableViewListener {
+public class SingleRollTableActivity extends Activity implements CreateRollTableFragment.createTableListener,
+        RollTableViewFragment.tableViewListener {
 
 
     RollTable currentActivityRollTable;
 
 
     @Override
-    public void goToEditTableView() {
-        //TODO display edit table frag and pass currentActivityRolltable
+    public void goToEditTableDetailsView() {
+        //pass currentActivityRollTable to editRollTableDetailsFragment and start frag
     }
 
 
 
     @Override
     public void createTableFromView(String title, @Nullable String description, int numResults, int[] die) {
+        //createRollTable call for database and get object as return, set as currentActivityRollTable
+        //pass currentActivityRollTable object to editRollTableEntriesFragment
+        //start editRollTableEntriesFragment
+    }
+
+    public void test(){
 
     }
 }
