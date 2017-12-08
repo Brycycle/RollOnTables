@@ -58,8 +58,7 @@ public class RollTableViewFragment extends Fragment {
         bRoll.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-//                        activityCommanderSingleTableFrag.rollOnTable();
-
+                        rollOnTable();
                     }
                 }
         );
@@ -80,8 +79,8 @@ public class RollTableViewFragment extends Fragment {
 
     }
 
-    public void receiveRollTable(RollTable rolltable){
-        this.rollTable = rolltable;
+    public void receiveRollTable(RollTable rollTable){
+        this.rollTable = rollTable;
     }
 
     private void rollOnTable(){

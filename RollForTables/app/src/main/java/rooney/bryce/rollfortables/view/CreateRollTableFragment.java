@@ -23,7 +23,7 @@ import rooney.bryce.rollfortables.Common.Constants;
 
 public class CreateRollTableFragment extends Fragment {
 
-    EditText etTitle, etDiscription, etNumResults;
+    EditText etTitle, etDescription, etNumResults;
     Spinner sNumDie, sDieType;
     static Button bCreate;
 
@@ -50,7 +50,7 @@ public class CreateRollTableFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_create_table_view, null);
 
         etTitle = view.findViewById(R.id.editTextTitle);
-        etDiscription = view.findViewById(R.id.editTextDiscription);
+        etDescription = view.findViewById(R.id.editTextDiscription);
         etNumResults = view.findViewById(R.id.editTextNumResults);
         sNumDie = view.findViewById(R.id.spinnerDieType);
         sDieType = view.findViewById(R.id.spinnerNumDie);
@@ -93,8 +93,8 @@ public class CreateRollTableFragment extends Fragment {
         String descriptionText = null;
 
         //Get description text if not null
-        if(!TextUtils.isEmpty(etDiscription.getText())){
-            descriptionText = etDiscription.getText().toString();
+        if(!TextUtils.isEmpty(etDescription.getText())){
+            descriptionText = etDescription.getText().toString();
         }
 
         //get die values

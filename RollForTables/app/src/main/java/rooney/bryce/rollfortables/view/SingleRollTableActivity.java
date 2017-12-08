@@ -15,7 +15,7 @@ import rooney.bryce.rollfortables.Classes.RollTable;
  */
 
 public class SingleRollTableActivity extends Activity implements CreateRollTableFragment.createTableListener,
-        RollTableViewFragment.tableViewListener {
+        RollTableViewFragment.tableViewListener, EditRollTableDetailsFragment.editTableDetailsListener {
 
 
     RollTable currentActivityRollTable;
@@ -26,6 +26,10 @@ public class SingleRollTableActivity extends Activity implements CreateRollTable
         //pass currentActivityRollTable to editRollTableDetailsFragment and start frag
     }
 
+    @Override
+    public void goToEditTableEntriesView(RollTable r) {
+
+    }
 
 
     @Override
